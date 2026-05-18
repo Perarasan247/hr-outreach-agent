@@ -51,8 +51,8 @@ MY_EMAIL_DISPLAY = os.getenv("MY_EMAIL_DISPLAY") or GMAIL_ADDRESS
 
 
 # ─── Behavioral constants ──────────────────────────────────────────
-BATCH_SIZE_DEFAULT = 20
-BATCH_SIZE_MIN = 5
+BATCH_SIZE_DEFAULT = 35
+BATCH_SIZE_MIN = 25
 BATCH_SIZE_MAX = 40
 
 DELAY_MIN_SECONDS = 45
