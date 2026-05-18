@@ -122,11 +122,17 @@ class OutreachBrain:
         )
 
         parsed = self._generate_email_json(prompt, retries=1)
-        subject = parsed.get("subject", "").strip()
         opening_hook = parsed.get("opening_hook", "").strip()
         cta = parsed.get("cta", "").strip()
 
-        cleaned = self.filter_spam_content(subject, opening_hook, cta)
+        # Subject is now a fixed template — independent of Gemini's
+        # suggestion. The hook and CTA still come from Gemini.
+        company = (contact.get("company") or "").strip().rstrip(",.;:")
+        if not company:
+            company = "your team"
+        fixed_subject = f"Open roles at {company}?"
+
+        cleaned = self.filter_spam_content(fixed_subject, opening_hook, cta)
         body = _build_email_body(
             name=contact.get("name", ""),
             company=contact.get("company", ""),

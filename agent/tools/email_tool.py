@@ -71,8 +71,8 @@ def _clean_subject(subject: str, name: str) -> str:
     if cleaned and cleaned[0].islower():
         cleaned = cleaned[0].upper() + cleaned[1:]
 
-    if len(cleaned) > 45:
-        cleaned = cleaned[:42].rstrip() + "..."
+    if len(cleaned) > 60:
+        cleaned = cleaned[:57].rstrip() + "..."
     return cleaned
 
 
