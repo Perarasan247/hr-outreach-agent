@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.log
+runs_history.txt
+.DS_Store
+venv/
+*.egg-info/
+
+# Contact list — contains PII (real names + emails). Never commit.
+data/*.csv
+data/*.pdf
+

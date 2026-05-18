@@ -1,0 +1,45 @@
+name: Agentic HR Outreach
+
+on:
+  schedule:
+    # 03:30 UTC = 09:00 IST, weekdays only.
+    - cron: '30 3 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          MY_NAME: ${{ secrets.MY_NAME }}
+          MY_TARGET_ROLE: ${{ secrets.MY_TARGET_ROLE }}
+          MY_EXPERIENCE_YEARS: ${{ secrets.MY_EXPERIENCE_YEARS }}
+          MY_KEY_SKILL_1: ${{ secrets.MY_KEY_SKILL_1 }}
+          MY_KEY_SKILL_2: ${{ secrets.MY_KEY_SKILL_2 }}
+          MY_KEY_SKILL_3: ${{ secrets.MY_KEY_SKILL_3 }}
+          MY_CURRENT_PROJECT: ${{ secrets.MY_CURRENT_PROJECT }}
+          MY_LINKEDIN_URL: ${{ secrets.MY_LINKEDIN_URL }}
+          MY_GITHUB_URL: ${{ secrets.MY_GITHUB_URL }}
+          MY_RESUME_URL: ${{ secrets.MY_RESUME_URL }}
+          MY_PHONE: ${{ secrets.MY_PHONE }}
+          MY_EMAIL_DISPLAY: ${{ secrets.MY_EMAIL_DISPLAY }}
+          MY_PORTFOLIO_URL: ${{ secrets.MY_PORTFOLIO_URL }}
+          MY_INTRO: ${{ secrets.MY_INTRO }}
+          MY_LOOKING_FOR: ${{ secrets.MY_LOOKING_FOR }}
+        run: python agent.py

@@ -1,0 +1,6 @@
+google-generativeai==0.7.2
+supabase==2.30.0
+websockets==15.0.1
+python-dotenv==1.0.1
+pandas==2.2.2
+resend==2.0.0
